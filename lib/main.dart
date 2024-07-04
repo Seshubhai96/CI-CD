@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -116,10 +117,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: (){
+          joinmeet();
+        },
+        tooltip: 'Meet',
+        child: const Icon(Icons.video_call),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+  joinmeet() async { 
+    var options = JitsiMeetingOptions(roomNameOrUrl: "https://meet.jit.si/FluuterTeam");
+    await JitsiMeetWrapper.joinMeeting(options: options);
   }
 }
